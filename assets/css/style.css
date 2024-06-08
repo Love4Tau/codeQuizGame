@@ -26,3 +26,26 @@ header a h2 {
     margin-left: 10px;
     margin-right: 25px; 
 }
+
+main {
+    text-align: center;
+    width: 600px;
+    margin: 0 auto;
+}
+
+p {
+    font-size: 25px;  
+    margin-top: 10px;
+}
+
+button {
+    background-color: purple;
+    padding: 15px;
+    border-radius: 10px;
+    border-color: transparent;
+    margin-top: 10px;
+}
+
+button h3 {
+    color: white;
+}
