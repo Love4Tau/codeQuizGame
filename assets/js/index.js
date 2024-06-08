@@ -1,10 +1,10 @@
 function startTimer() {
-    var time = 75;
-    var startTimer = setInterval(function(){
+    var time = 5;
+    setInterval(function(){
         document.getElementById("codeTimer").innerHTML=time;
         time--;
         if(time < 0) {
-            clearInterval(time);
+            time = 0;
         }
     }, 1000);
 }
