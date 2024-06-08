@@ -8,3 +8,8 @@ function startTimer() {
         }
     }, 1000);
 }
+
+function init() {
+    startTimer();
+    document.getElementById("mainPage").style.display = "none";
+}
