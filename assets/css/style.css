@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    top: 0;
+}
+
+header {
+    width: 100%;
+}
+
+.timer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    float: inline-end;
+    margin-top: 15px;
+}
+
+header a h2 {
+    display: inline-block; 
+    margin-left: 25px;
+    margin-top: 15px;
+}
+
+#codeTimer {
+    font-size: 25px;
+    margin-left: 10px;
+    margin-right: 25px; 
+}
