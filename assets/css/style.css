@@ -28,7 +28,8 @@ header a h2 {
     margin-top: auto;
 }
 
-main {
+main,
+section {
     text-align: center;
     width: 600px;
     margin: 0 auto;
@@ -49,4 +50,26 @@ button {
 
 button h3 {
     color: white;
+}
+
+.hideQuiz,
+.hideResult,
+.hideHighScores {
+    display: none;
+}
+
+/* Quiz Styling */
+
+.ans {
+    display: grid;
+    width: 40%;
+    cursor: pointer;
+}
+
+/* Result section styling */
+
+.result {
+    width: 100%;
+    border-top: 2px black;
+
 }
