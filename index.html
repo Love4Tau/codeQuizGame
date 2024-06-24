@@ -8,11 +8,14 @@
 </head>
 <body>
     <header>
-        <a href="/"><h2>View High Scores</h2></a>
-        <div class="timer">
-            <h2>Time:</h2>
-            <p id="codeTimer">0</p>
+        <div id="hideHeader">
+            <a><h2 onclick="displayHighScores()">View High Scores</h2></a>
+            <div class="timer">
+                <h2>Time:</h2>
+                <p id="codeTimer">0</p>
+            </div>
         </div>
+        
     </header>
     <main id="mainPage">
         <h1>Coding Quiz Challenge</h1>
@@ -20,23 +23,29 @@
         <button onclick="init();"><h3>Start Quiz</h3></button>
     </main>
     <section id="quiz" class="hideQuiz">
-        <h1 id="question"></h1>
+        <p id="question"></p>
         <div id="choicesHolder">
             <h2 class="btn" id="choices" >Answer 1</h2>
         </div>
-        <div id="result"></div>
+        <div id="result" class="inputBoxStyling"></div>
     </section>
     <section id="finalScore" class="hideResult">
-        <h1>All Done!</h1>
-        <p>Your final score is:</p>
+        <h1 class="inputBoxStyling">All Done!</h1>
+        <div class="inputBoxStyling">
+        <p>Your final score is: </p>
         <p id="userScore"></p>
-        <label>Enter Initials:<textarea id="initialsBox"></textarea><input type="submit" value="Submit" onclick="saveScore();"></label>
+        </div>
+        <div class="inputBoxStyling">
+        <h2>Enter Initials:</h2>
+        <textarea id="initialsBox" class="inputBoxStyling" row="30"></textarea>
+        <button onclick="saveLocalStorage();" class="inputBoxStyling">Submit</button>
+        </div>
     </section>
-    <section id="highScores" class="hideHighScores">
+    <section id="highScores" class="leaderboard">
         <h1>High scores</h1>
         <div id="scorers">
         </div>
-        <button onclick="displayHomepage()">Go Back</button>
+        <a href="./index.html"><button>Go Back</button></a>
     </section>
     <script src="./assets/js/index.js"></script>
 </body>

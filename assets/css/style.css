@@ -46,12 +46,26 @@ button {
     border-radius: 10px;
     border-color: transparent;
     margin-top: 10px;
+    color: white;
+}
+
+li {
+    list-style: none;
+    display: flex;
+}
+
+li button {
+    width: 40%;
+    align-items: flex-start;
+    font-size: 20px;
+    padding: 5px;
 }
 
 button h3 {
     color: white;
 }
 
+.leaderboard,
 .hideQuiz,
 .hideResult,
 .hideHighScores {
@@ -59,6 +73,11 @@ button h3 {
 }
 
 /* Quiz Styling */
+
+#question {
+    font-size: 35px;
+    margin-left: 0;
+}
 
 .ans {
     display: grid;
@@ -73,3 +92,18 @@ button h3 {
     border-top: 2px black;
 
 }
+
+.inputBoxStyling {
+    display: flex;
+    padding: 10px;
+    margin: 0;
+}
+
+textarea {
+    resize: none;
+    width: 40%;
+    height: 15px;
+}
+
+/* Styling for highscores page */
+

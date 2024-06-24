@@ -16,45 +16,55 @@ function stopTimer(){
     clearInterval(intervalId);
 }
 
-const questions = [
+let questions = [
     {
         question: 'Commonly used data types DO NOT include:',
         answer: 2,
         options: [
             '1. strings',
-            '2. boolean',
+            '2. booleans',
             '3. alerts',
             '4. numbers'
         ]
     },
     {
-        question: 'TEST Commonly used data types DO NOT include:',
+        question: 'The condition in an if/else statement is enclosed with ____________.',
         answer: 2,
         options: [
-            '1. T strings',
-            '2. T boolean',
-            '3. T alerts',
-            '4. T numbers'
+            '1. quotes',
+            '2. curly brackets',
+            '3. parenthesis',
+            '4. square brackets'
         ]
     },
     {
-        question: 'Commonly used data types DO NOT include:',
+        question: 'Arrays in Javascript can be used to store ____________.',
         answer: 3,
         options: [
-            '1. strings',
-            '2. boolean',
-            '3. alerts',
-            '4. numbers'
+            '1. numbers and strings',
+            '2. other arrays',
+            '3. booleans',
+            '4. all of the above'
         ]
     },
     {
-        question: 'Commonly used data types DO NOT include:',
-        answer: 0,
+        question: 'String values must be enclosed within ____________ when being assigned to variables.',
+        answer: 2,
         options: [
-            '1. strings',
-            '2. boolean',
-            '3. alerts',
-            '4. numbers'
+            '1. commas',
+            '2. curly brackets',
+            '3. quotes',
+            '4. paranthesis'
+        ]
+    },
+    {
+        question: 'A very useful tool used during development and debugging for printing content to the debugger is:',
+        answer: 3,
+        options: [
+            '1. Javascript',
+            '2. terminal/bash',
+            '3. for loops',
+            '4. console.log'
         ]
     }
     ]
@@ -66,7 +76,6 @@ let currentQuestion = 0;
 
 function displayQuiz() {
 
-    console.log(questions[currentQuestion].answer)
     //Clearing current text and displaying elements for quiz
     document.getElementById("mainPage").style.display = "none";
     document.getElementById("quiz").style.display = "block";
@@ -86,22 +95,6 @@ function displayQuiz() {
         li.appendChild(button);
         answerholder.appendChild(li);
     });
-
-
-
-
-    // for (let i=0; i < questions.length; i++){
-    //     document.getElementById("question").innerText = questions[i].question;
-    //     document.getElementById("choice1").innerText = questions[i].options[0];
-    //     document.getElementById("choice2").innerText = questions[i].options[1];
-    //     document.getElementById("choice3").innerText = questions[i].options[2];
-    //     document.getElementById("choice4").innerText = questions[i].options[3];
-
-    //     if(questions.answer) {
-    //         button.dataset.answer = questions.answer;
-    //     }
-    //     button.addEventListener("click", userAnswer);
-    // }
     
 }
 
@@ -112,13 +105,10 @@ function checkAnswer(option) {
     if(option === questions[currentQuestion].answer){
         score++;
         resultHolder.innerHTML = "Correct";
-        localStorage.setItem("wins", score)
         addTime();
     } else {
         score--;
         resultHolder.innerHTML = "Incorrect";
-        localStorage.setItem("losses", score)
-        console.log(score);
         removeTime();
     }
 
@@ -158,36 +148,41 @@ function endQuiz(){
     document.getElementById("userScore").innerHTML = score;
 }
 
-let userInitials = document.getElementById("initialsBox").value;
+//Select value of textarea element
+const initialsBox = document.getElementById("initialsBox");
 
-function saveScore(){
-    document.getElementById("mainPage").style.display = "none";
-    document.getElementById("quiz").style.display = "none";
-    document.getElementById("finalScore").style.display = "none";
-    let userInitials = document.getElementById("initialsBox").value;
-    console.log(userInitials)
+//save to local storage
+
+function saveLocalStorage() {
+    const initialsValue = initialsBox.value;
+    const data = initialsValue;
+    localStorage.setItem("initialsBoxData", JSON.stringify(data))
     displayHighScores();
 }
 
 const scorers = document.getElementById("scorers");
 
 function displayHighScores(){
+    //Hiding other elements and displaying high score section
+    document.getElementById("hideHeader").style.display = "none";
+    document.getElementById("mainPage").style.display = "none";
     document.getElementById("finalScore").style.display = "none";
     document.getElementById("highScores").style.display = "block";
-    const li = document.createElement("li");
-    li.innerHTML = score;
-    scorers.appendChild(li);
+
+    //Getting local storage data and parsing it to push to HTML
+    const userInitials = localStorage.getItem("initialsBoxData");
+    const parsedData = JSON.parse(userInitials);
+    const userScore = document.getElementById("scorers");
+    userScore.textContent = parsedData + ": " + score;
+
 }
 
 function displayHomepage(){
+    restartQuiz();
     document.getElementById("mainPage").style.display = "block";
     document.getElementById("quiz").style.display = "none";
     document.getElementById("finalScore").style.display = "none";
     document.getElementById("highScores").style.display = "none";
-}
-
-function resetForm(){
-        parentElement.removeChild(childElement)
 }
 
 function init() {
