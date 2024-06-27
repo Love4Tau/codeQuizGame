@@ -14,6 +14,7 @@ function startTimer() {
 
 function stopTimer(){
     clearInterval(intervalId);
+    
 }
 
 let questions = [
@@ -67,7 +68,7 @@ let questions = [
             '4. console.log'
         ]
     }
-    ]
+]
 
 const button = document.querySelector(".btn");
 const parentElement = document.getElementById("choiceHolder")
@@ -121,6 +122,7 @@ function checkAnswer(option) {
     }
 }
 
+
 function addTime(){
     if(time>0){
         time+=10;
@@ -135,10 +137,12 @@ function removeTime(){
     if(time>0){
         time-=10;
         document.getElementById("codeTimer").innerHTML=time;
-    }else{
+    }else if(time <= 0){
+        time = 0;
         endQuiz();
     }
 }
+
 
 function endQuiz(){
     stopTimer();
@@ -146,6 +150,7 @@ function endQuiz(){
     document.getElementById("quiz").style.display = "none";
     document.getElementById("finalScore").style.display = "block";
     document.getElementById("userScore").innerHTML = score;
+    document.getElementById("codeTimer").innerHTML=time;
 }
 
 //Select value of textarea element
@@ -153,11 +158,15 @@ const initialsBox = document.getElementById("initialsBox");
 
 //save to local storage
 
+
 function saveLocalStorage() {
-    const initialsValue = initialsBox.value;
-    const data = initialsValue;
-    localStorage.setItem("initialsBoxData", JSON.stringify(data))
-    displayHighScores();
+
+        const initialsValue = initialsBox.value;
+        const data = JSON.stringify(initialsValue);
+
+        localStorage.setItem("name", data);
+        localStorage.setItem(data, score);
+        displayHighScores();
 }
 
 const scorers = document.getElementById("scorers");
@@ -167,14 +176,25 @@ function displayHighScores(){
     document.getElementById("hideHeader").style.display = "none";
     document.getElementById("mainPage").style.display = "none";
     document.getElementById("finalScore").style.display = "none";
+    document.getElementById("quiz").style.display = "none";
     document.getElementById("highScores").style.display = "block";
 
     //Getting local storage data and parsing it to push to HTML
-    const userInitials = localStorage.getItem("initialsBoxData");
-    const parsedData = JSON.parse(userInitials);
+    const data = localStorage.getItem("name");
+    const parsedData = JSON.parse(localStorage.getItem("name"))
+    const parsedScore = localStorage.getItem(data);
     const userScore = document.getElementById("scorers");
-    userScore.textContent = parsedData + ": " + score;
+    if(parsedData !== null && parsedScore !== null) {
+        userScore.textContent = parsedData + ": " + parsedScore;
+    } else {
+        userScore.textContent = "No Saved High Scores";
+    }
+}
 
+
+function clearLeaderboard(){
+    localStorage.clear();
+    window.location.reload();
 }
 
 function displayHomepage(){

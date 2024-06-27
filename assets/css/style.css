@@ -7,6 +7,14 @@ header {
     width: 100%;
 }
 
+header a h2:hover {
+    cursor: pointer;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
 .timer {
     display: flex;
     align-items: center;
@@ -107,3 +115,19 @@ textarea {
 
 /* Styling for highscores page */
 
+ #highScores {
+    margin-top: 30px;
+ }
+
+ #highScores h1 {
+    font-size: 45px;
+ }
+
+ #highScores button {
+    padding: 3px;
+    border-radius: 3px;
+ }
+
+ #scorers {
+    font-size: 20px;
+ }
